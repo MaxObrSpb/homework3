@@ -20,5 +20,8 @@ public interface PersonService {
     @Nonnull
     PersonResponse updatePerson(@Nonnull Integer id, @Nonnull PersonRequest request);
 
+    @Nonnull
+    void removeFromDepartment(@Nonnull Integer id, @Nonnull PersonRequest request);
+
     void deletePerson(@Nonnull Integer id);
 }

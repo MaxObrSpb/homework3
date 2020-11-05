@@ -12,6 +12,8 @@ public interface CrudOperations<T, ID> {
 
     List<T> findAll();
 
+    T create(T entity);
+
     T update(T entity);
 
     T delete(ID id);

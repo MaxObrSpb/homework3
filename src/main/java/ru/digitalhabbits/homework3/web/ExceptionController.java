@@ -28,6 +28,15 @@ public class ExceptionController {
         return new ErrorResponse(exception.getMessage());
     }
 
+    @ApiResponse(responseCode = "409",
+            description = "Department is closed",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictException.class)
+    public ErrorResponse error(ConflictException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
     @ApiResponse(responseCode = "500",
             description = "Server error",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))

@@ -5,4 +5,7 @@ import ru.digitalhabbits.homework3.domain.Person;
 
 @NoRepositoryBean
 public interface PersonDao
-        extends CrudOperations<Person, Integer> {}
+        extends CrudOperations<Person, Integer> {
+
+    void removeFromDepartment(Integer id);
+}

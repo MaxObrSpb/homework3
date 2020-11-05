@@ -1,12 +1,12 @@
 package ru.digitalhabbits.homework3.dao;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Repository;
 import ru.digitalhabbits.homework3.domain.Department;
 
 import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -18,25 +18,33 @@ public class DepartmentDaoImpl
 
     @Override
     public Department findById(@Nonnull Integer integer) {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        Department department = entityManager.find(Department.class, integer);
+        return department;
     }
 
     @Override
     public List<Department> findAll() {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        Query query = entityManager.createNamedQuery("Department.findDepartments");
+        return query.getResultList();
+    }
+
+    @Override
+    public Department create(Department entity) {
+        entityManager.persist(entity);
+        entityManager.flush();
+        return entity;
     }
 
     @Override
     public Department update(Department entity) {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        return entityManager.merge(entity);
     }
+
 
     @Override
     public Department delete(Integer integer) {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        Department department = findById(integer);
+        entityManager.remove(department);
+        return department;
     }
 }
